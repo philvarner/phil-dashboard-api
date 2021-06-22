@@ -33,7 +33,7 @@ jobs:
           PROJECT_NAME: 'phil-dashboard-api'
           DATA_BUCKET: 'phil-dashboard-datasets'
           STAGE: ${{ steps.extract_branch.outputs.branch }}
-          VECTOR_TILESERVER_URL: 'https://mbtileserver.dev.maap-project.org'
+          VECTOR_TILESERVER_URL: ''
           TITILER_SERVER_URL: 'https://h9su0upami.execute-api.us-east-1.amazonaws.com'
         with:
           from_file: 'stack/config.yml.example'
