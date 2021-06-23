@@ -55,6 +55,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}- 
 
+      - name: Upgrade pip
+        run: sudo python -m pip install -U pip
+
       - name: Get pip cache dir
         id: pip-cache
         run: |
@@ -70,6 +73,8 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get install jq
+
+  
 
       - name: Install AWS CDK, pip requirements and run CDK bootstrap
         run: ./install.sh
