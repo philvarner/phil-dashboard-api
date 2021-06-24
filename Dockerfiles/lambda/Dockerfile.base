@@ -1,0 +1,10 @@
+FROM lambci/lambda:build-python3.7
+
+WORKDIR /app
+
+RUN pip install --upgrade pip && \
+    pip install "numpy~=1.21.0" -t /var/task --no-binary numpy && \
+    cd /var/task && find . -type f -name '*.pyc' | while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.cpython-[2-3][0-9]//'); cp $f $n; done; \
+    cd /var/task && find . -type d -a -name '__pycache__' -print0 | xargs -0 rm -rf && \
+    cd /var/task && find . -type f -a -name '*.py' -print0 | xargs -0 rm -f && \
+    find /var/task -type d -a -name 'tests' -print0 | xargs -0 rm -rf
