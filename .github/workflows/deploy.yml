@@ -74,23 +74,10 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
-      - name: Install AWS CDK, pip requirements and run CDK bootstrap
+      - name: Install AWS CDK and pip requirements
         run: ./install.sh
-
-      # - id: cache-docker
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: /tmp/docker-save
-      #     key: docker-save-${{ hashFiles('Dockerfiles/lambda/Dockerfile') }}
-      # - run: docker load -i /tmp/docker-save/snapshot.tar || true
-      #   if: steps.cache-docker.outputs.cache-hit == 'true'
 
       - name: Deploy the resources to AWS
         run: ./deploy.sh
       
       - run: echo "Successfully deployed."
-
-      # - name: Save local Docker registry
-      #   run: mkdir -p /tmp/docker-save && docker save $(docker images -q) -o /tmp/docker-save/snapshot.tar && ls -lh /tmp/docker-save || true
-      #   if: always() && steps.cache-docker.outputs.cache-hit != 'true'
-

@@ -1,4 +1,4 @@
-FROM 532321095167.dkr.ecr.us-east-1.amazonaws.com/phil-dashboard-api-base:7a7b033-2021-06-24-17-46-21
+FROM 532321095167.dkr.ecr.us-east-1.amazonaws.com/phil-dashboard-api-base:be4b908-2021-06-24-19-00-36
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY setup.py /app/setup.py
 
 # numpy should already be installed, so this will be faster
 RUN pip install --upgrade pip && \
-    pip install . "mangum>=0.9.0,<0.10.1" -t /var/task --no-binary numpy, pydantic && \
+    pip install . "mangum>=0.9.0,<0.10.1" -t /var/task && \
     cd /var/task && find . -type f -name '*.pyc' | while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.cpython-[2-3][0-9]//'); cp $f $n; done; \
     cd /var/task && find . -type d -a -name '__pycache__' -print0 | xargs -0 rm -rf && \
     cd /var/task && find . -type f -a -name '*.py' -print0 | xargs -0 rm -f && \
