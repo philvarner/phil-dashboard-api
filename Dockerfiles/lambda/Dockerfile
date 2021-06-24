@@ -1,4 +1,4 @@
-FROM phil-dashboard-api-base:7a7b033-2021-06-24-17-46-21
+FROM 532321095167.dkr.ecr.us-east-1.amazonaws.com/phil-dashboard-api-base:7a7b033-2021-06-24-17-46-21
 
 WORKDIR /app
 
